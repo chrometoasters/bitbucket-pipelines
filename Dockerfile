@@ -18,6 +18,7 @@ RUN apt-get update -qy \
         libfontconfig1 \
         libgconf-2-4 \
         libgdk-pixbuf2.0-0 \
+        libgmp-dev \
         libgtk-3-0 \
         libnspr4 \
         libnss3 \
@@ -35,23 +36,11 @@ RUN apt-get update -qy \
         libxss1 \
         libxtst6 \
         make \
+        php7.3-gmp \
         pngquant \
         software-properties-common \
         wget \
         xdg-utils \
-    --no-install-recommends \
-    --no-upgrade \
- && apt-get purge --auto-remove -y \
- && apt-get autoclean \
- && apt-get autoremove \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Add libgmp and enable gmp extension to support SilverStripe MFA
-RUN add-apt-repository ppa:ondrej/php \
- && apt-get update -qy \
- && apt-get install -qy \
-        libgmp-dev \
-        php7.3-gmp \
     --no-install-recommends \
     --no-upgrade \
  && apt-get purge --auto-remove -y \
